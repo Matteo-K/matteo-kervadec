@@ -14,8 +14,7 @@
         "symfony/runtime": "7.2.*",
         "symfony/yaml": "7.2.*"
     },
-    "require-dev": {
-    },
+    "require-dev": {},
     "config": {
         "allow-plugins": {
             "php-http/discovery": true,
@@ -47,15 +46,11 @@
     },
     "scripts": {
         "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "cache:clear": "echo 'Skipping symfony-cmd due to Docker execution context.'",
+            "assets:install %PUBLIC_DIR%": "echo 'Skipping symfony-cmd due to Docker execution context.'"
         },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ]
+        "post-install-cmd": [],
+        "post-update-cmd": []
     },
     "conflict": {
         "symfony/symfony": "*"
