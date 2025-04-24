@@ -16,12 +16,13 @@ RUN a2enmod rewrite
 # Copier le code de ton projet
 COPY . /var/www/html/
 
-# Définir les permissions appropriées pour le répertoire
-RUN chown -R www-data:www-data /var/www/html/var /var/www/html/vendor
-
 # Installer les dépendances avec Composer
 WORKDIR /var/www/html
 RUN composer install --no-dev --optimize-autoloader
+
+# Définir les permissions appropriées pour le répertoire une fois qu'ils existent
+RUN mkdir -p /var/www/html/var && \
+    chown -R www-data:www-data /var/www/html/var /var/www/html/vendor
 
 # Exposer le port 80
 EXPOSE 80
