@@ -3,26 +3,31 @@ FROM php:8.2-apache
 
 # Installer les extensions PHP requises
 RUN apt-get update && apt-get install -y \
-    libpng-dev libjpeg-dev libfreetype6-dev zip git \
+    libpng-dev libjpeg-dev libfreetype6-dev zip git unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_mysql
 
 # Installer Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Configuration Apache
-COPY ./apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+# Activer mod_rewrite
 RUN a2enmod rewrite
 
-# Copier le code de ton projet
-COPY . /var/www/html/
-
-# Installer les dépendances avec Composer
+# Copier les fichiers du projet
 WORKDIR /var/www/html
+COPY . .
+
+# Installer les dépendances PHP via Composer (obligatoire car /vendor/ est dans le .gitignore)
 RUN composer install --no-dev --optimize-autoloader
 
-# Créer le dossier var (car ignoré par git) et définir les permissions
-RUN mkdir -p /var/www/html/var && chown -R www-data:www-data /var/www/html/var
+# Créer le dossier var/ s'il n'existe pas (sinon chown plante)
+RUN mkdir -p /var/www/html/var
 
-# Exposer le port 80
+# Définir les permissions
+RUN chown -R www-data:www-data /var/www/html/var
+
+# Exposer le port HTTP
 EXPOSE 80
+
+# Commande de démarrage
+CMD ["apache2-foreground"]
