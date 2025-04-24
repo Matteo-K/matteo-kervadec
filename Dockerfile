@@ -2,7 +2,8 @@
 FROM php:8.2-apache
 
 # Installer les extensions PHP requises
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip git \
+RUN apt-get update && apt-get install -y \
+    libpng-dev libjpeg-dev libfreetype6-dev zip git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_mysql
 
@@ -18,10 +19,10 @@ COPY . /var/www/html/
 
 # Installer les dépendances avec Composer
 WORKDIR /var/www/html
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --optimize-autoloader
 
-# Définir les permissions appropriées (après install)
-RUN chown -R www-data:www-data /var/www/html/var /var/www/html/vendor
+# Créer le dossier var (car ignoré par git) et définir les permissions
+RUN mkdir -p /var/www/html/var && chown -R www-data:www-data /var/www/html/var
 
 # Exposer le port 80
 EXPOSE 80
