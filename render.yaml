@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: mkportfolio
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        value: "postgresql://mkportfolio_db:CqxP3O744jSz37braib6FtnsaohOqs2C@dpg-d05a2ms9c44c739rim30-a/dbmkportfolio"
+    autoDeploy: true
+
+databases:
+  - name: mkportfolio_db
+    databaseName: dbmkportfolio
+    user: mkportfolio_db
+    plan: free
+    region: frankfurt
