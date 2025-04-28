@@ -17,6 +17,9 @@ RUN a2enmod rewrite
 WORKDIR /var/www/html
 COPY . .
 
+# Copier la configuration Apache personnalisée
+COPY apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+
 # Installer les dépendances PHP via Composer (obligatoire car /vendor/ est dans le .gitignore)
 RUN composer install --no-dev --optimize-autoloader
 

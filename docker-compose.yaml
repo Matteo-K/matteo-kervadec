@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  apache:
+    build: .
+    container_name: mkportfolio-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - database
+
+  database:
+    image: postgres:16-alpine
+    container_name: mkportfolio-database
+    environment:
+      POSTGRES_USER: mkportfolio_db
+      POSTGRES_PASSWORD: CqxP3O744jSz37braib6FtnsaohOqs2C
+      POSTGRES_DB: dbmkportfolio
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "dbmkportfolio", "-U", "mkportfolio_db"]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    volumes:
+      - database_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  database_data:
