@@ -8,6 +8,7 @@ services:
       - "8080:80"
     volumes:
       - .:/var/www/html
+      - ./vendor:/var/www/html/vendor  # Ne pas écraser le dossier vendor
     depends_on:
       - database
 
