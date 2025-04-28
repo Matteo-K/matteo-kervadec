@@ -23,6 +23,9 @@ COPY apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 # Installer les dépendances PHP via Composer (obligatoire car /vendor/ est dans le .gitignore)
 RUN composer install --no-dev --optimize-autoloader
 
+# Définit le nom de domaine
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 # Créer le dossier var/ s'il n'existe pas (sinon chown plante)
 RUN mkdir -p /var/www/html/var
 
