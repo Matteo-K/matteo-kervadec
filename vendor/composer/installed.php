@@ -3,17 +3,17 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd9a1e832f7155a80bd6f8b73704ac9563b389497',
+        'reference' => '4e0b8b0f8b61774a88053ee662d59c74352c412d',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'dev' => true,
+        'dev' => false,
     ),
     'versions' => array(
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd9a1e832f7155a80bd6f8b73704ac9563b389497',
+            'reference' => '4e0b8b0f8b61774a88053ee662d59c74352c412d',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -144,15 +144,6 @@
             'install_path' => __DIR__ . '/../doctrine/sql-formatter',
             'aliases' => array(),
             'dev_requirement' => false,
-        ),
-        'nikic/php-parser' => array(
-            'pretty_version' => 'v5.4.0',
-            'version' => '5.4.0.0',
-            'reference' => '447a020a1f875a434d62f2a401f53b82a396e494',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../nikic/php-parser',
-            'aliases' => array(),
-            'dev_requirement' => true,
         ),
         'psr/cache' => array(
             'pretty_version' => '3.0.0',
@@ -385,15 +376,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'symfony/maker-bundle' => array(
-            'pretty_version' => 'v1.62.1',
-            'version' => '1.62.1.0',
-            'reference' => '468ff2708200c95ebc0d85d3174b6c6711b8a590',
-            'type' => 'symfony-bundle',
-            'install_path' => __DIR__ . '/../symfony/maker-bundle',
-            'aliases' => array(),
-            'dev_requirement' => true,
-        ),
         'symfony/polyfill-ctype' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -486,15 +468,6 @@
             'install_path' => __DIR__ . '/../symfony/polyfill-php84',
             'aliases' => array(),
             'dev_requirement' => false,
-        ),
-        'symfony/process' => array(
-            'pretty_version' => 'v7.2.5',
-            'version' => '7.2.5.0',
-            'reference' => '87b7c93e57df9d8e39a093d32587702380ff045d',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../symfony/process',
-            'aliases' => array(),
-            'dev_requirement' => true,
         ),
         'symfony/routing' => array(
             'pretty_version' => 'v7.2.3',
